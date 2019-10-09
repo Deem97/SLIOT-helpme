@@ -2,6 +2,7 @@
   <HelloWorld />
 </template>
 
+
 <script>
 import HelloWorld from "../components/HelloWorld";
 
