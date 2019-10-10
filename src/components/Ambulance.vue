@@ -5,7 +5,7 @@
             <v-flex>
                 <gmap-map
                         :center="center"
-                        :zoom="12"
+                        :zoom="10"
                         style="width:1200px;  height: 800px;"
                 >
                     <gmap-marker
@@ -18,30 +18,6 @@
             </v-flex>
         </v-layout>
     </v-container>
-<!--    <div>-->
-<!--        <div>-->
-<!--            <v-container>-->
-<!--                <ul id="example-1">-->
-<!--                    <li v-for="item in data">-->
-<!--                        {{ item }}-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </v-container>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <h2>Search and add a pin</h2>-->
-<!--            <label>-->
-<!--                <gmap-autocomplete-->
-<!--                        @place_changed="setPlace">-->
-<!--                </gmap-autocomplete>-->
-<!--                <button @click="addMarker">Add</button>-->
-<!--            </label>-->
-<!--            <br/>-->
-
-<!--        </div>-->
-<!--        <br>-->
-
-<!--    </div>-->
 </template>
 
 <script>
@@ -57,10 +33,12 @@
                 data:[],
             };
         },
-
+        beforeMount(){
+            this.getData()
+        },
         mounted() {
             this.geolocate();
-            this.getData()
+            this.addMarker();
         },
 
         methods: {
@@ -71,6 +49,9 @@
                     querySnapshot.forEach(doc => {
                         this.data.push(doc.data());
                     });
+                    for (let i = 0; i < this.data.length; i++) {
+                        this.addPosition(this.data[i].d.coordinates);
+                    }
                 }, err => {
                     console.log(`Encountered error: ${err}`);
                 });
@@ -78,17 +59,26 @@
             setPlace(place) {
                 this.currentPlace = place;
             },
+            addPosition(position){
+                const marker = {
+                    lat: position._lat,
+                    lng: position._long
+                };
+                this.markers.push({ position: marker });
+            },
             addMarker() {
-                if (this.currentPlace) {
+                navigator.geolocation.getCurrentPosition(position => {
                     const marker = {
-                        lat: this.currentPlace.geometry.location.lat(),
-                        lng: this.currentPlace.geometry.location.lng()
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
                     };
-                    this.markers.push({ position: marker });
-                    this.places.push(this.currentPlace);
-                    this.center = marker;
-                    this.currentPlace = null;
-                }
+                        this.markers.push({ position: marker });
+                        this.places.push(this.currentPlace);
+                        this.center = marker;
+                        this.currentPlace = null;
+
+                });
+
             },
             geolocate: function() {
                 navigator.geolocation.getCurrentPosition(position => {
@@ -97,7 +87,7 @@
                         lng: position.coords.longitude
                     };
                 });
-            }
+            },
         }
     };
 </script>
