@@ -1,22 +1,15 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app dark  src="https://crwgeorgia.org/wp-content/uploads/2015/06/high-resolution-vintage-paper-backgrounds-free-download-.jpg" >
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>HelpMe</span>
+        
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
@@ -31,6 +24,10 @@ export default {
   },
   data: () => ({
     //
-  })
+  }),
+  created () {
+    this.$vuetify.theme.dark = true
+  },
+  
 };
 </script>
