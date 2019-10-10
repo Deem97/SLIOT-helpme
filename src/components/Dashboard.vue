@@ -54,10 +54,12 @@
     import Map from "./Map";
     import Ambulance from  "./Ambulance";
     import Accident from "./Accident";
+    import  Analysis from "./Analysis";
 
     export default {
         components: {
             Accident,
+            Analysis,
             Ambulance,
             HelloWorld,
             Map,
@@ -81,7 +83,7 @@
                 this.component = Accident;
             },
             Dashboard(){
-                this.component = HelloWorld;
+                this.component = Analysis;
             }
         }
     }

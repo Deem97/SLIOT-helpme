@@ -1,19 +1,19 @@
 <template>
     <v-container>
-            Accident
-            <ul id="example-1">
-                <li v-for="item in data">
-                    {{ item }}
-                </li>
-            </ul>
-            <v-btn  @click="getData">Click</v-btn>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
     </v-container>
 </template>
 
 <script>
     import {Firestore} from '../config';
+    import Card from './Card';
     export default {
         components: {
+            Card
         },
         props: {
         },

@@ -7,11 +7,11 @@ Vue.config.productionTip = false;
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyDWmZGBkdvY7R-DqCKIqkOwZ5_CvrDw5ic",
+    key: "AIzaSyCA9geSJL9s7xIXxYFNWBOWphry6LcYaTI",
+    //    AIzaSyBTU24Pq2DNbDuRopXqv4SG2TU-IlyfuLs
     libraries: "places"
   }
 });
-
 
 
 new Vue({
