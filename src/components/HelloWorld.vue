@@ -43,6 +43,14 @@
                     type="password"
                     v-model = "password"
                   ></v-text-field>
+                  
+                  <v-text-field
+                    id="teleNumber"
+                    label="teleNumber"
+                    name="teleNumber"          
+                    type="number"
+                    v-model = "teleNumber"
+                  ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
